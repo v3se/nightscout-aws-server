@@ -1,0 +1,5 @@
+---
+- hosts: all
+  remote_user: ec2-user
+  roles:
+    - { role: juggluco-setup, become: yes }

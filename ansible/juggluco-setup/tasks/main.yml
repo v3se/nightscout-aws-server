@@ -1,0 +1,3 @@
+---
+# tasks file for juggluco-setup
+- include_tasks: preconfig.yml

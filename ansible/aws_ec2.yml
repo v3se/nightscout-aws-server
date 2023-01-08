@@ -1,0 +1,6 @@
+---
+plugin: aws_ec2
+regions:
+  - eu-north-1
+filters:
+  tag:project: juggluco-aws-grafana
