@@ -1,0 +1,2 @@
+---
+mongodb_uri: "mongodb://{{ db_username }}:{{ db_passwd }}@{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}:27017"

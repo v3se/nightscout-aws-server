@@ -1,0 +1,9 @@
+---
+- name: Container present
+  community.docker.docker_container:
+    name: mongodb
+    state: present
+    image: mongo:4.2.23
+    env:
+      MONGO_INITDB_ROOT_USERNAME: "{{ db_username }}"
+      MONGO_INITDB_ROOT_PASSWORD: "{{ db_passwd }}"

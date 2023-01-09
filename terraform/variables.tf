@@ -1,12 +1,12 @@
 variable "ec2_instance_type" {
   type        = string
   default     = "t3.medium"
-  description = "autoec2 server EC2 instance type"
+  description = "Nightscout server EC2 instance type"
 }
 
 variable "ec2_ami_id" {
   type        = string
-  description = "autoec2 server EC2 AMI ID"
+  description = "Nightscout server EC2 AMI ID"
 }
 
 variable "aws_region" {
@@ -21,5 +21,10 @@ variable "ec2_management_source_ip" {
 
 variable "project_common_tag" {
   type        = string
-  description = "Common tag for all autoec2 resources"
+  description = "Common tag for all nightscout resources"
+}
+
+variable "ec2_db_volume_size" {
+  type        = number
+  description = "DB Root volume size"
 }

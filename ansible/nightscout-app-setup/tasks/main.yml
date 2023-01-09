@@ -1,0 +1,4 @@
+---
+# tasks file for nightscout-app-setup
+- include_tasks: preconfig.yml
+- include_tasks: install.yml

@@ -1,0 +1,3 @@
+---
+# vars file for nightscout-app-setup
+mongodb_uri: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"

@@ -1,0 +1,7 @@
+---
+- name: Add the nightscout user
+  ansible.builtin.user:
+    name: nightscout
+    comment: Nightscout service user
+    groups: wheel,docker
+    append: yes

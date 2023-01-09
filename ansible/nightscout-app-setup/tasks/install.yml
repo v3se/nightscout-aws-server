@@ -1,0 +1,12 @@
+---
+- name: Template docker compose file
+  ansible.builtin.template:
+    src: docker-compose.yml
+    dest: /home/nightscout
+    owner: nightscout
+    group: nightscout
+    mode: '0700'
+- name: Create and start services
+  community.docker.docker_compose:
+    project_src: /home/nightscout
+  register: output
