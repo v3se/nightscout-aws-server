@@ -1,21 +1,26 @@
 version: '3'
-
 services:
+  mongo:
+    image: mongo:4.4
+    volumes:
+      - ${NS_MONGO_DATA_DIR:-./mongo-data}:/data/db:cached
   nightscout:
     image: nightscout/cgm-remote-monitor:latest
     container_name: nightscout
     restart: always
+    depends_on:
+      - mongo
     labels:
       - 'traefik.enable=true'
       # Change the below Host from `localhost` to be the web address where Nightscout is running.
       # Also change the email address in the `traefik` service below.
-      - 'traefik.http.routers.nightscout.rule=Host(`localhost`)'
+      - 'traefik.http.routers.nightscout.rule=Host(`{{ dns_name }}`)'
       - 'traefik.http.routers.nightscout.entrypoints=websecure'
       - 'traefik.http.routers.nightscout.tls.certresolver=le'
     environment:
       ### Variables for the container
       NODE_ENV: production
-      TZ: Europe/Helsinki
+      TZ: "{{ timezone }}"
 
       ### Overridden variables for Docker Compose setup
       # The `nightscout` service can use HTTP, because we use `traefik` to serve the HTTPS
@@ -29,7 +34,7 @@ services:
       # The default connects to the `mongo` included in this docker-compose file.
       # If you change it, you probably also want to comment out the entire `mongo` service block
       # and `depends_on` block above.
-      MONGO_CONNECTION: "{{ mongodb_uri }}"
+      MONGO_CONNECTION: mongodb://mongo:27017/nightscout
 
       # API_SECRET - A secret passphrase that must be at least 12 characters long.
       API_SECRET: "{{ api_secret }}"
@@ -60,7 +65,7 @@ services:
       - "--certificatesresolvers.le.acme.httpchallenge.entrypoint=web"
       - '--certificatesresolvers.le.acme.storage=/letsencrypt/acme.json'
       # Change the below to match your email address
-      - '--certificatesresolvers.le.acme.email=robertvesterinen@gmail.com'
+      - '--certificatesresolvers.le.acme.email={{ trafeik_email }}'
     ports:
       - '443:443'
       - '80:80'

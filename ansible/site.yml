@@ -4,11 +4,6 @@
   tasks:
   - include_tasks: install_common.yml
 
-- hosts: tag_Role_nightscout_db
-  remote_user: ec2-user
-  roles:
-    - nightscout-db-setup
-
 - hosts: tag_Role_nightscout_app
   remote_user: ec2-user
   roles:

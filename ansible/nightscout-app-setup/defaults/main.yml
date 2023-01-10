@@ -1,2 +1,5 @@
 ---
 # defaults file for nightscout-app-setup
+trafeik_email: robertvesterinen@gmail.com
+timezone: Europe/Helsinki
+dns_name: vesegluco.whado.net
