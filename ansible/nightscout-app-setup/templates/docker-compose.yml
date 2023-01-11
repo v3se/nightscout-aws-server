@@ -42,7 +42,7 @@ services:
       ### Features
       # ENABLE - Used to enable optional features, expects a space delimited list, such as: careportal rawbg iob
       # See https://github.com/nightscout/cgm-remote-monitor#plugins for details
-      ENABLE: careportal rawbg iob
+      ENABLE: rawbg iob boluscalc 
 
       # AUTH_DEFAULT_ROLES (readable) - possible values readable, denied, or any valid role name.
       # When readable, anyone can view Nightscout without a token. Setting it to denied will require
@@ -51,6 +51,18 @@ services:
 
       # For all other settings, please refer to the Environment section of the README
       # https://github.com/nightscout/cgm-remote-monitor#environment
+
+      TIME_FORMAT: 24
+      THEME: colors
+      ALARM_TIMEAGO_WARN: "off"
+      ALARM_TIMEAGO_URGENT: "off"
+      ALARM_LOW: "off"
+      ALARM_HIGH: "off"
+      ALARM_URGENT_HIGH: "off"
+      ALARM_URGENT_LOW: "off"
+      DISPLAY_UNITS: mmol/L
+
+
 
   traefik:
     image: traefik:latest

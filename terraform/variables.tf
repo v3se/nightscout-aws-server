@@ -28,3 +28,11 @@ variable "ec2_db_volume_size" {
   type        = number
   description = "DB Root volume size"
 }
+
+variable "route53_hosted_zone" {
+  type        = string
+}
+
+variable "route53_dns_record" {
+  type        = string
+}
