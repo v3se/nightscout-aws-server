@@ -1,2 +1,7 @@
 ---
 # handlers file for nightscout-app-setup
+- name: Restart docker services
+  community.docker.docker_compose:
+    project_src: /home/nightscout
+    state: present
+    restarted: true

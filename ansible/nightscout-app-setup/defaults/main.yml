@@ -3,3 +3,4 @@
 trafeik_email: robertvesterinen@gmail.com
 timezone: Europe/Helsinki
 dns_name: vesegluco.whado.net
+redash_dns_name: redash.whado.net

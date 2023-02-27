@@ -1,12 +1,13 @@
 ---
-- name: Template docker compose file
+- name: Template nightscout docker compose file
   ansible.builtin.template:
-    src: docker-compose.yml
-    dest: /home/nightscout
+    src: nightscout-docker-compose.yml
+    dest: /home/nightscout/docker-compose.yml
     owner: nightscout
     group: nightscout
     mode: '0700'
-- name: Create and start services
+- name: Create and start nightscout services
   community.docker.docker_compose:
     project_src: /home/nightscout
+    state: present
   register: output

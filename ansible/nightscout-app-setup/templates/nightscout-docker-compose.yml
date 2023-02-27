@@ -54,15 +54,25 @@ services:
 
       TIME_FORMAT: 24
       THEME: colors
-      ALARM_TIMEAGO_WARN: "off"
-      ALARM_TIMEAGO_URGENT: "off"
-      ALARM_LOW: "off"
-      ALARM_HIGH: "off"
-      ALARM_URGENT_HIGH: "off"
-      ALARM_URGENT_LOW: "off"
+      ALARM_TIMEAGO_WARN: 'off'
+      ALARM_TIMEAGO_URGENT: 'off'
+      ALARM_LOW: 'off'
+      ALARM_HIGH: 'off'
+      ALARM_URGENT_HIGH: 'off'
+      ALARM_URGENT_LOW: 'off'
       DISPLAY_UNITS: mmol/L
 
-
+  nightscout-libre-link:
+    image: timoschlueter/nightscout-librelink-up
+    container_name: nightscout-libre-link
+    environment:
+      LINK_UP_USERNAME: "{{ link_up_username }}"
+      LINK_UP_PASSWORD: "{{ link_up_password }}"
+      LINK_UP_TIME_INTERVAL: "1"
+      LINK_UP_REGION: "EU"
+      NIGHTSCOUT_URL: "vesegluco.whado.net"
+      NIGHTSCOUT_API_TOKEN: "{{ api_secret }}"
+      LOG_LEVEL: "info"
 
   traefik:
     image: traefik:latest
@@ -81,6 +91,7 @@ services:
     ports:
       - '443:443'
       - '80:80'
+      - '8086:8086'
     volumes:
       - './letsencrypt:/letsencrypt'
       - '/var/run/docker.sock:/var/run/docker.sock:ro'

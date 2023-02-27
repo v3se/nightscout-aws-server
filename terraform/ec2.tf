@@ -51,6 +51,15 @@ resource "aws_security_group_rule" "nightscout-ingress-ssh" {
   security_group_id = aws_security_group.nightscout-aws-app.id
 }
 
+resource "aws_security_group_rule" "nightscout-ingress-influxdb" {
+  type              = "ingress"
+  from_port         = 8086
+  to_port           = 8086
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.nightscout-aws-app.id
+}
+
 resource "aws_security_group_rule" "nightscout-egress" {
   type              = "egress"
   from_port         = 0
