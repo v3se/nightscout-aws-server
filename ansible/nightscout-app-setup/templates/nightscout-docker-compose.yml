@@ -71,7 +71,7 @@ services:
       LINK_UP_TIME_INTERVAL: "1"
       LINK_UP_REGION: "EU"
       NIGHTSCOUT_URL: "vesegluco.whado.net"
-      NIGHTSCOUT_API_TOKEN: "{{ api_secret }}"
+      NIGHTSCOUT_API_TOKEN: "{{ librelink_api_secret_sha1 }}"
       LOG_LEVEL: "info"
 
   traefik:
@@ -91,7 +91,6 @@ services:
     ports:
       - '443:443'
       - '80:80'
-      - '8086:8086'
     volumes:
       - './letsencrypt:/letsencrypt'
       - '/var/run/docker.sock:/var/run/docker.sock:ro'
