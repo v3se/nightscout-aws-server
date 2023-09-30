@@ -5,7 +5,7 @@ aws_region         = "eu-north-1"
 ### EC2 ###
 ec2_instance_type = "t4g.small"
 ec2_ami_id        = "ami-05a5649834e220448" #64-bit ARM
-ec2_db_volume_size = 10 #In gigabytes
+ec2_db_volume_size = 15 #In gigabytes
 
 ### DNS ###
 route53_hosted_zone = "whado.net"
