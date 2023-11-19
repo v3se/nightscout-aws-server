@@ -1,0 +1,17 @@
+---
+- name: Check if the site is available
+  ansible.builtin.uri:
+    url: "http://{{ dns_name }}"  # Change this to the URL of your site
+    method: GET
+    return_content: true
+  register: response
+  until: response.status in [200, 201]
+  delay: 10
+  retries: 4
+  when: not ansible_check_mode  # Execute only if not in check mode
+
+- name: Fail the playbook if the site is not available
+  ansible.builtin.fail:
+    msg: "Site is not available after retries: {{ response.status }} - {{ response.reason }}"
+  when: response.status not in [200, 201]
+  ignore_errors: "{{ ansible_check_mode }}"

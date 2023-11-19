@@ -1,4 +1,8 @@
 ---
 # tasks file for nightscout-app-setup
-- include_tasks: preconfig.yml
-- include_tasks: install.yml
+- name: Run preconfig tasks
+  ansible.builtin.include_tasks: preconfig.yml
+- name: Run install tasks
+  ansible.builtin.include_tasks: install.yml
+- name: Run postinstall tasks
+  ansible.builtin.include_tasks: postinstall.yml

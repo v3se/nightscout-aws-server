@@ -4,4 +4,4 @@
     name: nightscout
     comment: Nightscout service user
     groups: wheel,docker
-    append: yes
+    append: true

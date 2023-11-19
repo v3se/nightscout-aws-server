@@ -1,3 +1,15 @@
+# Ignore Ansible artifacts
+*.retry
+*.ini
+
+# Ignore Python virtual environment
+__pycache__/
+*.pyc
+*.pyo/
+*.pyd/
+venv/
+venv*/
+
 # Local .terraform directories
 **/.terraform/*
 
@@ -27,3 +39,5 @@ override.tf.json
 .terraformrc
 terraform.rc
 *.plan
+
+.vscode

@@ -2,6 +2,7 @@ version: '3'
 services:
   mongo:
     image: mongo:4.4
+    restart: always
     volumes:
       - ${NS_MONGO_DATA_DIR:-./mongo-data}:/data/db:cached
   nightscout:
@@ -65,6 +66,7 @@ services:
   nightscout-libre-link:
     image: timoschlueter/nightscout-librelink-up
     container_name: nightscout-libre-link
+    restart: always
     environment:
       LINK_UP_USERNAME: "{{ link_up_username }}"
       LINK_UP_PASSWORD: "{{ link_up_password }}"
@@ -77,6 +79,7 @@ services:
   traefik:
     image: traefik:latest
     container_name: 'traefik'
+    restart: always
     command:
       - '--providers.docker=true'
       - '--providers.docker.exposedbydefault=false'

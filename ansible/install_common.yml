@@ -1,40 +1,40 @@
 ---
 - name: Update all packages
-  yum:
+  ansible.builtin.yum:
     name: '*'
     state: latest
-    update_only: yes
+    update_only: true
 
 - name: Ensure a list of yum packages are installed
-  yum:
+  ansible.builtin.yum:
     name: "{{ packages }}"
-    state: latest
-    update_cache: yes
+    state: present
+    update_cache: true
   vars:
     packages:
-    - python-pip
-    - yum-utils
-    - device-mapper-persistent-data
-    - lvm2
-    - amazon-linux-extras
+      - python-pip
+      - yum-utils
+      - device-mapper-persistent-data
+      - lvm2
+      - amazon-linux-extras
 
 - name: Add extras repository
-  shell: yum-config-manager --enable extras
+  ansible.builtin.shell: yum-config-manager --enable extras
 
 - name: Install docker-ce (centos) via amazon-linux-extras packages
-  shell: "amazon-linux-extras install docker -y"
+  ansible.builtin.shell: "amazon-linux-extras install docker -y"
 
 - name: Enable Docker CE service at startup
-  service:
+  ansible.builtin.service:
     name: docker
     state: started
-    enabled: yes
+    enabled: true
 
 - name: Ensure Python pip packages are installed
-  pip:
+  ansible.builtin.pip:
     name: "{{ packages }}"
   vars:
     packages:
-    - boto
-    - boto3
-    - docker-compose
+      - boto
+      - boto3
+      - docker-compose
